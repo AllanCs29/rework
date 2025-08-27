@@ -30,6 +30,10 @@ import java.time.LocalTime
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.* 
+
+
 
 enum class Tab { HOY, TRABAJO, EJERCICIO, ESTUDIO, STATS }
 
