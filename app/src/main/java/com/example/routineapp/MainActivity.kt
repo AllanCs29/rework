@@ -9,8 +9,6 @@ import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -30,10 +28,19 @@ import java.time.LocalTime
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+
+// 👇 Íconos: importa solo lo necesario para evitar conflictos
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.* 
-
-
+import androidx.compose.material.icons.outlined.DarkMode
+import androidx.compose.material.icons.outlined.PictureAsPdf
+import androidx.compose.material.icons.outlined.Insights
+import androidx.compose.material.icons.outlined.Today
+import androidx.compose.material.icons.outlined.WorkOutline
+import androidx.compose.material.icons.outlined.FitnessCenter
+import androidx.compose.material.icons.outlined.School
+import androidx.compose.material.icons.outlined.Refresh
+import androidx.compose.material.icons.outlined.Bolt
+import androidx.compose.material.icons.outlined.Save
 
 enum class Tab { HOY, TRABAJO, EJERCICIO, ESTUDIO, STATS }
 
@@ -68,9 +75,9 @@ class MainActivity : ComponentActivity() {
                             },
                             actions = {
                                 Row(verticalAlignment = Alignment.CenterVertically) {
-                                    IconButton(onClick = { dark = !dark }) { Icon(Icons.Outlined.DarkMode, null) }
-                                    IconButton(onClick = { PdfExporter.exportToday(ctx, items) }) { Icon(Icons.Outlined.PictureAsPdf, "PDF Hoy") }
-                                    IconButton(onClick = { PdfExporter.exportWeekly(ctx, loadHistory(ctx)) }) { Icon(Icons.Outlined.Insights, "PDF Semana") }
+                                    IconButton(onClick = { dark = !dark }) { Icon(Icons.Outlined.DarkMode, contentDescription = "Tema") }
+                                    IconButton(onClick = { PdfExporter.exportToday(ctx, items) }) { Icon(Icons.Outlined.PictureAsPdf, contentDescription = "PDF Hoy") }
+                                    IconButton(onClick = { PdfExporter.exportWeekly(ctx, loadHistory(ctx)) }) { Icon(Icons.Outlined.Insights, contentDescription = "PDF Semana") }
                                 }
                             }
                         )
@@ -173,9 +180,9 @@ fun TodayTab(
             if (title.isNotBlank()) {
                 onAdd(title.trim(), time.ifBlank { null }); title = ""; time = ""
             }
-        }) { Icon(Icons.Outlined.Bolt, null); Spacer(Modifier.width(6.dp)); Text("Agregar") }
-        FilledTonalButton(onClick = onGenerate) { Icon(Icons.Outlined.Refresh, null); Spacer(Modifier.width(6.dp)); Text("Generar HOY") }
-        Button(onClick = onSave) { Icon(Icons.Outlined.Save, null); Spacer(Modifier.width(6.dp)); Text("Guardar + Notificar") }
+        }) { Icon(Icons.Outlined.Bolt, contentDescription = null); Spacer(Modifier.width(6.dp)); Text("Agregar") }
+        FilledTonalButton(onClick = onGenerate) { Icon(Icons.Outlined.Refresh, contentDescription = null); Spacer(Modifier.width(6.dp)); Text("Generar HOY") }
+        Button(onClick = onSave) { Icon(Icons.Outlined.Save, contentDescription = null); Spacer(Modifier.width(6.dp)); Text("Guardar + Notificar") }
     }
     Spacer(Modifier.height(12.dp))
     Row(verticalAlignment = Alignment.CenterVertically) {
